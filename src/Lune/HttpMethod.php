@@ -1,4 +1,5 @@
 <?php 
+namespace Lune;
 
 enum  HttpMethod: string {
     case GET = 'GET';
