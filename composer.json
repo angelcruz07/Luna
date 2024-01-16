@@ -8,11 +8,21 @@
 			"Lune\\": "src/Lune"
 		}
 	},
+	"scripts": {
+		"test": "phpunit --color=always --testdox tests/"
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"Lune\\Test\\": "tests"
+		}
+	},
 	"authors": [
 		{
 			"name": "Angel Cruz",
 			"email": "136207924+angelcruz07@users.noreply.github.com"
 		}
 	],
-	"require": {}
+	"require-dev": {
+		"phpunit/phpunit": "^10.5"
+	}
 }
