@@ -12,9 +12,9 @@ class Router {
               $this -> routes [$method -> value ] = [];
            }
         }
-        public function resolve(string $uri, string $method){ 
-            foreach($this->routes[$method] as $route){ 
-                if($route->matches($uri)) { 
+        public function resolve(Request $request) { 
+        foreach($this->routes[$request -> method()-> value ] as $route){ 
+                if($route->matches($request -> uri())) { 
                     return $route;   
                 }
             }
