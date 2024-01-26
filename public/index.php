@@ -3,8 +3,10 @@
 require_once '../vendor/autoload.php';
 
 use Lune\HttpNotFoundException;
+use Lune\Request;
 use Lune\Router;
 use Lune\Route;
+use Lune\Server;
 
 $router = new Router();
 
@@ -29,11 +31,11 @@ $router->delete('/test', function () {
 });
 
 try { 
-    // $route = $router ->resolve($_SERVER["REQUEST_URI"], $_SERVER['REQUEST_METHOD']); 
-    // $action = $route->action();
-    // print($action());
-    $route = new Route('/test/{test}/user/{user}', fn () => "test");
-    var_dump($route->parseParameters('test/1/user/string'));
+    $route = $router ->resolve(new Request(new Server())); 
+    $action = $route->action();
+    print($action());
+    // $route = new Route('/test/{test}/user/{user}', fn () => "test");
+    // var_dump($route->parseParameters('test/1/user/string'));
     
 } catch (HttpNotFoundException $e) { 
     print('Not Found'); 
