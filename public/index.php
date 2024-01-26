@@ -3,10 +3,9 @@
 require_once '../vendor/autoload.php';
 
 use Lune\HttpNotFoundException;
+use Lune\PhpNativeServer;
 use Lune\Request;
 use Lune\Router;
-use Lune\Route;
-use Lune\Server;
 
 $router = new Router();
 
@@ -31,7 +30,7 @@ $router->delete('/test', function () {
 });
 
 try { 
-    $route = $router ->resolve(new Request(new Server())); 
+    $route = $router ->resolve(new Request(new PhpNativeServer())); 
     $action = $route->action();
     print($action());
     // $route = new Route('/test/{test}/user/{user}', fn () => "test");
