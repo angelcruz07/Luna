@@ -1,4 +1,5 @@
 <?php
+
 namespace Lune\Http;
 
 /**
@@ -6,8 +7,6 @@ namespace Lune\Http;
  *
  * This exception is thrown when a requested resource is not found on the server.
  */
-class HttpNotFoundException extends \Exception { 
-
+class HttpNotFoundException extends \Exception
+{
 }
-
-?>

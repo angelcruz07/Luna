@@ -1,6 +1,7 @@
 <?php
 
 namespace Lune\Server;
+
 use Lune\Http\HttpMethod;
 use Lune\Http\Response;
 
@@ -8,14 +9,15 @@ use Lune\Http\Response;
  * Interface Server
  * Represents a server that handles incoming requests and sends responses.
  */
-interface Server {
+interface Server
+{
     /**
      * Get the request URI.
      *
      * @return string The request URI.
      */
     public function requestUri(): string;
-    
+
     /**
      * Get the request method.
      *
@@ -44,5 +46,3 @@ interface Server {
      */
     public function sendResponse(Response $response);
 }
-
-?>

@@ -1,6 +1,7 @@
 <?php
 
 namespace Lune\Server;
+
 use Lune\Http\HttpMethod;
 use Lune\Http\Response;
 
@@ -14,7 +15,8 @@ class PhpNativeServer implements Server
      *
      * @return string The request URI.
      */
-    public function requestUri(): string {
+    public function requestUri(): string
+    {
         return parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
     }
 
@@ -23,7 +25,8 @@ class PhpNativeServer implements Server
      *
      * @return HttpMethod The request method.
      */
-    public function requestMethod(): HttpMethod { 
+    public function requestMethod(): HttpMethod
+    {
         return HttpMethod::from($_SERVER["REQUEST_METHOD"]);
     }
 
@@ -32,7 +35,8 @@ class PhpNativeServer implements Server
      *
      * @return array The POST data.
      */
-    public function postData(): array { 
+    public function postData(): array
+    {
         return $_POST;
     }
 
@@ -41,7 +45,8 @@ class PhpNativeServer implements Server
      *
      * @return array The query parameters.
      */
-    public function queryParams(): array { 
+    public function queryParams(): array
+    {
         return $_GET;
     }
 
@@ -51,7 +56,8 @@ class PhpNativeServer implements Server
      * @param Response $response The response object to send.
      * @return void
      */
-    public function sendResponse(Response $response) {
+    public function sendResponse(Response $response)
+    {
         /* Php sends a default Content-Type header, but it has to be removed
           if the response has not content. Content-Type header can't be removed
           unless it is set to some value before.
@@ -61,12 +67,9 @@ class PhpNativeServer implements Server
 
         $response->prepare();
         http_response_code($response -> status());
-        foreach($response -> headers() as $header => $value){
+        foreach ($response -> headers() as $header => $value) {
             header("$header: $value");
         }
         print($response -> content());
     }
-
 }
-
-?>

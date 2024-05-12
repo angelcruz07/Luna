@@ -5,7 +5,8 @@ namespace Lune\Http;
 /**
  * Http response that will be sent to the client
  */
-class Response {
+class Response
+{
     /**
      * Response HTTP status code
      *
@@ -26,13 +27,14 @@ class Response {
      * @var string|null
      */
     protected ?string $content = null;
-    
+
     /**
      * Get the HTTP status code
      *
      * @return integer
      */
-    public function status():int {
+    public function status(): int
+    {
         return $this -> statusCode;
     }
 
@@ -43,7 +45,8 @@ class Response {
      * @param int $statusCode The HTTP status code to set.
      * @return self Returns the current instance of the Response class.
      */
-    public function setStatus(int $statusCode): self {
+    public function setStatus(int $statusCode): self
+    {
         $this -> statusCode = $statusCode;
         return $this;
     }
@@ -53,7 +56,8 @@ class Response {
      *
      * @return array<string, string>
      */
-    public function headers(): array {
+    public function headers(): array
+    {
         return $this->headers;
     }
 
@@ -65,7 +69,8 @@ class Response {
      * @param string $value The value of the header.
      * @return self Returns the current instance of the Response object.
      */
-    public function setHeader( string $header, string $value): self {
+    public function setHeader(string $header, string $value): self
+    {
         $this -> headers[strtolower($header)] = $value;
         return $this;
     }
@@ -76,7 +81,8 @@ class Response {
      * @param string $header The header to be removed.
      * @return void
      */
-    public function removeHeader(string $header) {
+    public function removeHeader(string $header)
+    {
         unset($this -> headers[strtolower($header)]);
     }
 
@@ -86,7 +92,8 @@ class Response {
      * @param string $value The value of the content type.
      * @return self Returns the current instance of the Response class.
      */
-    public function setContentType(string $value): self{
+    public function setContentType(string $value): self
+    {
         $this -> setHeader('Content-Type', $value);
         return $this;
     }
@@ -96,7 +103,8 @@ class Response {
      *
      * @return string|null The content of the response.
      */
-    public function content(): ?string {
+    public function content(): ?string
+    {
         return $this->content;
     }
 
@@ -106,7 +114,8 @@ class Response {
      * @param string $content The content to set.
      * @return self
      */
-    public function setContent(string $content): self {
+    public function setContent(string $content): self
+    {
         $this -> content = $content;
         return $this;
     }
@@ -116,11 +125,12 @@ class Response {
      * If the content is null, the 'Content-Type' and 'Content-Length' headers are removed.
      * If the content is not null, the 'Content-Length' header is set to the length of the content.
      */
-    public function prepare(){
-        if(is_null($this -> content)){
+    public function prepare()
+    {
+        if (is_null($this -> content)) {
             $this -> removeHeader('Content-Type');
             $this -> removeHeader('Content-Length');
-        }else {
+        } else {
             $this->setHeader('Content-Length', (string) strlen($this -> content));
         }
     }
@@ -132,7 +142,8 @@ class Response {
      * @param array $data The data to be encoded as JSON.
      * @return self The JSON response.
      */
-    public static function json(array $data): self {
+    public static function json(array $data): self
+    {
         return  (new self())
         ->setContentType('application/json')
         ->setContent(json_encode($data));
@@ -144,7 +155,8 @@ class Response {
      * @param string $text The text content of the response.
      * @return self The text response.
      */
-    public static function text(string $text): self {
+    public static function text(string $text): self
+    {
         return  (new self())
         ->setContentType('text/plain')
         ->setContent($text);
@@ -156,12 +168,10 @@ class Response {
      * @param string $uri The URI to redirect to.
      * @return self The redirect response.
      */
-    public static function redirect(string $uri):self{
+    public static function redirect(string $uri): self
+    {
         return (new self())
         ->setStatus(302)
         ->setHeader('Location', $uri);
     }
 }
-
-
-?>
