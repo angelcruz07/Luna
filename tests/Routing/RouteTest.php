@@ -86,3 +86,5 @@ class RouteTest extends TestCase {
         $this->assertEquals($expectedParameters, $route->parseParameters($uri));
     }
 }
+
+?>

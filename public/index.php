@@ -33,3 +33,5 @@ try {
     $response = Response::text("Not found")->setStatus(404);
     $server->sendResponse($response);
 }
+
+?>

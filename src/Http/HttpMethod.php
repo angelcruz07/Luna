@@ -1,7 +1,10 @@
 <?php 
 namespace Lune\Http;
 
-enum  HttpMethod: string {
+/**
+ * Represents the HTTP methods supported by the application.
+ */
+enum HttpMethod: string {
     case GET = 'GET';
     case POST = 'POST'; 
     case PUT = 'PUT'; 
