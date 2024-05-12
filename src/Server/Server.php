@@ -2,6 +2,7 @@
 
 namespace Lune\Server;
 use Lune\Http\HttpMethod;
+use Lune\Http\Response;
 
 interface  Server{
     public function requestUri(): string;
@@ -11,4 +12,6 @@ interface  Server{
     public function postData(): array ;
 
     public function queryParams(): array;
+
+    public function sendResponse(Response $response);
 }
