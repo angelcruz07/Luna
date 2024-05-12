@@ -2,11 +2,11 @@
 
 namespace Lune\Tests;
 
-use Lune\Route;
+use Lune\Routing\Route;
 use PHPUnit\Framework\TestCase;
 
 class RouteTest extends TestCase {
-    public function routesWithNoParameters() {
+    public static function routesWithNoParameters() {
         return [
             ['/'],
             ['/test'],
@@ -36,7 +36,7 @@ class RouteTest extends TestCase {
         $this->assertTrue($route->matches("$uri/"));
     }
 
-    public function routesWithParameters() {
+    public static function routesWithParameters() {
         return [
             [
                 '/test/{test}',

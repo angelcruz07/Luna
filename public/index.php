@@ -1,44 +1,27 @@
 <?php
 
-require_once '../vendor/autoload.php';
+use Lune\Http\HttpNotFoundException;
+use Lune\Http\Request;
+use Lune\Routing\Router;
+use Lune\Server\PhpNativeServer;
 
-use Lune\HttpNotFoundException;
-use Lune\PhpNativeServer;
-use Lune\Request;
-use Lune\Router;
+require_once "../vendor/autoload.php";
 
 $router = new Router();
 
-$router -> get('/test', function() {
-    return 'GET OK';
+$router->get('/test', function () {
+    return "GET OK";
 });
 
-$router -> post('/test', function() {
-    return 'POST OK';
+$router->post('/test', function () {
+    return "POST OK";
 });
 
-$router->put('/test', function () {
-    return "PUT OK";
-});
-
-$router -> patch('/test', function() { 
-    return 'PATCH OK';
-});
-
-$router->delete('/test', function () {
-    return "DELETE OK";
-});
-
-try { 
-    $route = $router ->resolve(new Request(new PhpNativeServer())); 
+try {
+    $route = $router->resolve(new Request(new PhpNativeServer()));
     $action = $route->action();
     print($action());
-    // $route = new Route('/test/{test}/user/{user}', fn () => "test");
-    // var_dump($route->parseParameters('test/1/user/string'));
-    
-} catch (HttpNotFoundException $e) { 
-    print('Not Found'); 
+} catch (HttpNotFoundException $e) {
+    print("Not found");
     http_response_code(404);
 }
-
-?>

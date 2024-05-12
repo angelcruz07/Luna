@@ -1,6 +1,7 @@
 <?php
 
-namespace Lune;
+namespace Lune\Server;
+use Lune\Http\HttpMethod;
 
 class PhpNativeServer implements Server
 {
